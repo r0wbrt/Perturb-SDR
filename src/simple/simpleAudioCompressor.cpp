@@ -2,8 +2,11 @@
 #include "simple/simpleAudioCompressor.h"
 
 
+namespace perturb
+{
+
 template<>
- perturb::simpleAudioCompressor<double>::simpleAudioCompressor()
+ simpleAudioCompressor<double>::simpleAudioCompressor()
 {
   this->gain =.3;
   this->feedback = .7;
@@ -12,7 +15,7 @@ template<>
 }
   
 template<>
-double  perturb::simpleAudioCompressor<double>::inputSample(std::complex<double> input)
+double  simpleAudioCompressor<double>::inputSample(std::complex<double> input)
 {
   double k = sqrt(norm(input));
   double l;
@@ -35,48 +38,48 @@ double  perturb::simpleAudioCompressor<double>::inputSample(std::complex<double>
 }
 
 template<>
-double  perturb::simpleAudioCompressor<double>::getFeedback()
+double  simpleAudioCompressor<double>::getFeedback()
 {
   return this->feedback;
 }
 
 template<>
-double  perturb::simpleAudioCompressor<double>::setFeedback(double feedback)
+double  simpleAudioCompressor<double>::setFeedback(double feedback)
 {
   this->feedback = feedback;
   return this->feedback;
 }
 
 template<>
-double  perturb::simpleAudioCompressor<double>::getGain()
+double  simpleAudioCompressor<double>::getGain()
 {
   return this->gain;
 }
 
 template<>
-double  perturb::simpleAudioCompressor<double>::setGain(double gain)
+double  simpleAudioCompressor<double>::setGain(double gain)
 {
   this->gain = gain;
   return this->gain;
 }
 
 template<>
-void  perturb::simpleAudioCompressor<double>::reset()
+void  simpleAudioCompressor<double>::reset()
 {
   this->prev = 0;
 }
 
 template <>
-double perturb::simpleAudioCompressor<double>::setMaxMul(double mul)
+double simpleAudioCompressor<double>::setMaxMul(double mul)
 {
   this->maxMul = mul;
   return this->maxMul;
 }
 
 template<>
-double perturb::simpleAudioCompressor<double>::getMaxMul()
+double simpleAudioCompressor<double>::getMaxMul()
 {
   return this->maxMul;
 }
 
-
+};
