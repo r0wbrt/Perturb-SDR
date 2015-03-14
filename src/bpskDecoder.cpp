@@ -1,8 +1,11 @@
 #define __perturb_bpskDecoder_h__DOUBLE_INTERNAL
 #include "bpskDecoder.h"
 
+namespace perturb
+{
+
 template <>
-perturb::bpskDecoder<double>::bpskDecoder()
+bpskDecoder<double>::bpskDecoder()
 {
   this->phaseError = 0;
   this->amplitudeError = 0;
@@ -14,7 +17,7 @@ perturb::bpskDecoder<double>::bpskDecoder()
 }
 
 template <>
-void perturb::bpskDecoder<double>::inputSample(std::complex<double> sample)
+void bpskDecoder<double>::inputSample(std::complex<double> sample)
 {
   double a = arg(sample);
   this->amplitudeMean += norm(sample);
@@ -23,7 +26,7 @@ void perturb::bpskDecoder<double>::inputSample(std::complex<double> sample)
 }
 
 template <>
-void perturb::bpskDecoder<double>::inputSample(std::complex<double> prevSymbolSample, std::complex<double> currentSymbolSample)
+void bpskDecoder<double>::inputSample(std::complex<double> prevSymbolSample, std::complex<double> currentSymbolSample)
 {
   double a = arg(currentSymbolSample / prevSymbolSample);
   this->amplitudeMean += norm(currentSymbolSample);
@@ -32,7 +35,7 @@ void perturb::bpskDecoder<double>::inputSample(std::complex<double> prevSymbolSa
 }
 
 template <>
-bool perturb::bpskDecoder<double>::doDecode()
+bool bpskDecoder<double>::doDecode()
 {
   if(this->index == 0)
     return false;
@@ -90,7 +93,7 @@ bool perturb::bpskDecoder<double>::doDecode()
 }
 
 template <>
-void perturb::bpskDecoder<double>::resetDecoder()
+void bpskDecoder<double>::resetDecoder()
 {
   this->amplitudeMean = 0;
   this->phaseVector.clear();
@@ -98,19 +101,19 @@ void perturb::bpskDecoder<double>::resetDecoder()
 }
 
 template <>
-void perturb::bpskDecoder<double>::clearData()
+void bpskDecoder<double>::clearData()
 {
   this->dataVector.clear();
 }
 
 template <>
-std::vector<bool> perturb::bpskDecoder<double>::outputData()
+std::vector<bool> bpskDecoder<double>::outputData()
 {
   return this->dataVector;
 }
 
 template <>
-void perturb::bpskDecoder<double>::reset()
+void bpskDecoder<double>::reset()
 {
   this->phaseError = 0;
   this->amplitudeError = 0;
@@ -122,28 +125,29 @@ void perturb::bpskDecoder<double>::reset()
 }
 
 template <>
-int perturb::bpskDecoder<double>::getNumberOfSamples()
+int bpskDecoder<double>::getNumberOfSamples()
 {
   return this->index;
 }
 
 template <>
-double perturb::bpskDecoder<double>::getAmplitudeError()
+double bpskDecoder<double>::getAmplitudeError()
 {
   this->changed = false;
   return this->amplitudeError;
 }
 
 template <>
-double perturb::bpskDecoder<double>::getPhaseError()
+double bpskDecoder<double>::getPhaseError()
 {
   this->changed = false;
   return this->phaseError;
 }
 
 template <>
-bool perturb::bpskDecoder<double>::isChanged()
+bool bpskDecoder<double>::isChanged()
 {
   return this->changed;
 }
 
+};
