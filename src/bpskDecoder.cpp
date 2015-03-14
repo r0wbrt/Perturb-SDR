@@ -21,7 +21,7 @@ void bpskDecoder<double>::inputSample(std::complex<double> sample)
 {
   double a = arg(sample);
   this->amplitudeMean += norm(sample);
-  this->phaseVector.pushBack(a);
+  this->phaseVector.push_back(a);
   this->index++;
 }
 
@@ -30,7 +30,7 @@ void bpskDecoder<double>::inputSample(std::complex<double> prevSymbolSample, std
 {
   double a = arg(currentSymbolSample / prevSymbolSample);
   this->amplitudeMean += norm(currentSymbolSample);
-  this->phaseVector.pushBack(a);
+  this->phaseVector.push_back(a);
   this->index++;
 }
 
@@ -59,7 +59,7 @@ bool bpskDecoder<double>::doDecode()
   else 
     dec = true;
 
-  this->dataVec.pushBack(dec);
+  this->dataVector.push_back(dec);
   it = this->phaseVector.begin();
   it_end = this->phaseVector.end();
   psum = 0.0;
