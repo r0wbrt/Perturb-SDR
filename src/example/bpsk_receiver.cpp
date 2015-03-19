@@ -156,6 +156,11 @@ int main(int argc, char **args) {
 
   frequency = -1.0*(frequency / sampleRate);
   std::complex<double> input;
+
+  /*This loop is bad practice! Leads to reading over the end of the file.*/
+  /*Also, this loop should be replaced with an buffering solution that takes 
+    into account the delay an hilbert filter will introduce when it comes to 
+    regenerating the complex baseband. */
   while(inputF.eof()!=true)
   {
     for(int j = 0; (j < 8) && (inputF.eof()!=true); j++)
