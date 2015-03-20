@@ -1,3 +1,6 @@
+#include "perturb.h"
+#include "filters.h"
+
 namespace perturb 
 {
   template <>
@@ -49,11 +52,11 @@ namespace perturb
     {
       double coef = sin(2.0*PI*b*(nc - i)) / (PI*(nc-i));
       filter.push_back(coef);
-      j++
+      j++;
     }
     filter.push_back(1.0);
     j++;
-    for(int i = 0; i < c, i++)
+    for(int i = 0; i < c; i++)
     {
       double coef = sin(2.0*PI*b*(i+1)) / (PI*(i+1));
       filter.push_back(coef);
