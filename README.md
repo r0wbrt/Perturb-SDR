@@ -1,6 +1,10 @@
 Perturb SDR
 ===========
 
+This project has moved here: https://github.com/synkarae/Perturb
+
+
+
 About
 -----
 An ambitious project to develop a simple and straigtfoward, 100% free, software 
